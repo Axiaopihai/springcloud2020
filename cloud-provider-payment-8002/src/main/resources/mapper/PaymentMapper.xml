@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myself.PaymentDao">
+
+    <select id="queryEmpById" parameterType="java.lang.Integer"
+            resultType="bean.Account">
+        select * from account2 where id=#{id}
+    </select>
+
+    <insert id="insertEmp" parameterType="bean.Account" useGeneratedKeys="true" keyProperty="id">
+        insert into account2(user_name) values (#{userName})
+    </insert>
+
+</mapper>

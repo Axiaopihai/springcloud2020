@@ -1,0 +1,28 @@
+server:
+  port: 8801
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+spring:
+  application:
+    name: cloud-stream-provider
+  cloud:
+    stream:
+      binders: #定义binder
+        defaultRabbit: #binder名称
+          type: rabbit #中间件类型
+          enviroment: #中间件信息
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+      bindings: #服务整合
+        output: #通道名称，须和代码中注入的通道名称相同
+          destination: studyExchange #目的地exchange或topic
+          content-type: application/json #数据格式，文本text/plain
+          binder: defaultRabbit #应用的binder
